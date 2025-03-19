@@ -30,9 +30,9 @@ router
   .route('/')
   .get(getProducts)
 
-  // dont forget : ajouter pour update et create , delete : ( restrictTo('admin', 'superadmin'),)
   .post(
     protect,
+     restrictTo('admin', 'superadmin')
 uploadProductsImages,
     createProductValidator,
     createProduct  );
@@ -41,13 +41,14 @@ router
   .get(getProductValidator, getProduct)
   .put(
     protect,
-   
+    restrictTo('admin', 'superadmin')
     uploadProductsImages,
     updateProductValidator,
     updateProduct
   )
   .delete(
     protect,
+     restrictTo('admin', 'superadmin')
     deleteProductValidator,
     deleteProduct
   );
